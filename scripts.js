@@ -3,7 +3,7 @@ const GameBoard = ( () => {
     //Create gameboard with "blank" spaces
     const board = Array(9).fill(null);
 
-    //Function to get a copy of the gameboard safely (getter)
+    //Function to get a copy of the Gameboard safely (getter)
     const getBoard = () => [...board];
 
     //Check if a move is valid (if cell is empty)
@@ -14,12 +14,16 @@ const GameBoard = ( () => {
 
     //Reset gameboard
     const resetGameBoard = () => board.fill(null);
+
+    //Check if board is full
+    const checkFullBoard = () => board.every(cell => cell !== null);
 })();
 
-    //Reset gameboard
-    //Check if board is full
 
 // Game Controller / Players module
+const GameController = ( () => {
+
+})();
     //Create two players (could be just symbols "X" and "O" for now)
     //Handle move: player picks a cell → module checks → updates gameboard
     //Check for win/loss/tie after every move (using winning index combos)
