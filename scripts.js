@@ -27,7 +27,7 @@ const GameBoard = ( () => {
 const GameController = ( () => {
     //Create two players (could be just symbols "X" and "O" for now)
     const players = ["O", "X"];
-    let currentPlayer = player[0];
+    let currentPlayer = players[0];
 
     //Handle move: player picks a cell → module checks → updates gameboard
     const makeMove = (cell) => {
@@ -36,11 +36,28 @@ const GameController = ( () => {
         if (move === true) {
             GameBoard.updateBoard(cell, currentPlayer);
         }
+
+        if(checkWin()) {
+            console.log(`You've won the game, Player ${currentPlayer}!`);
+            scores[currentPlayer]++;
+            GameBoard.resetGameBoard();
+        }
+        else if (scores[currentPlayer] >= 3) {
+            console.log(`You've won it all, Player ${currentPlayer}!`);
+            resetAll();
+        } else {
+            switchPlayers();
+        }
+
+        if (GameBoard.checkFullBoard()) {
+            console.log(`It's a tie!`);
+            GameBoard.resetGameBoard();
+        }
     };
 
     //Check for win/loss/tie after every move (using winning index combos)
     const checkWin = () => {
-        //Indexes taht indicates winning positions
+        //Indexes that indicates winning positions
         const winningConditions = [
             [0,1,2], [3,4,5], [6,7,8],
             [0,3,6], [1,4,7], [2,5,8],
@@ -49,17 +66,39 @@ const GameController = ( () => {
         
 
         //Get the current player plays' index
-        const currentPlayerCells = () => GameBoard.getBoard
-                                            .map((cells, index) => cells === currentPlayer ? index : -10)
+        const currentPlayerCells = GameBoard.getBoard().map((cells, index) => cells === currentPlayer ? index : -10)
                                             .filter(index => index !== -10);
         
-        //Compare to determine winner or not                                    
+        //Compare to determine winner or not
+        return winningConditions.some(subarray => subarray.every(win => currentPlayerCells.includes(win)));
     };
+
+    //Switch players automatically after a valid move
+    const switchPlayers = () => currentPlayer = (currentPlayer === "X") ? "O" : "X";
+
+    //Keep track of who's playing (currentPlayer)
+    const getCurrentPlayer = () => [...currentPlayer];
+
+    //Track scores
+    const scores = {
+        X: 0,
+        O: 0,
+    };
+
+    //Show scores
+    const getScores = () => [...scores];
+
+    //Allow resetting game state (board + currentPlayer + scores)
+    const resetAll = () => {
+        GameBoard.resetGameBoard();
+        currentPlayer = "X";
+        scores = { X: 0, O: 0 }
+    };
+
+    //Make methods available
+    return { makeMove, getCurrentPlayer, getScores }
 })();
 
-    //Check for win/loss/tie after every move (using winning index combos)
-    //Switch players automatically after a valid move
-    //Keep track of who's playing (currentPlayer)
-    //Track scores (wins, losses, ties) [good addition!]
-    //Allow resetting game state (board + currentPlayer + scores)
 
+
+window.GameController = GameController;
