@@ -17,15 +17,46 @@ const GameBoard = ( () => {
 
     //Check if board is full
     const checkFullBoard = () => board.every(cell => cell !== null);
+
+    //Make methods available
+    return { getBoard, checkMove, updateBoard, resetGameBoard, checkFullBoard };
 })();
 
 
 // Game Controller / Players module
 const GameController = ( () => {
-
-})();
     //Create two players (could be just symbols "X" and "O" for now)
+    const players = ["O", "X"];
+    let currentPlayer = player[0];
+
     //Handle move: player picks a cell → module checks → updates gameboard
+    const makeMove = (cell) => {
+        const move = GameBoard.checkMove(cell);
+
+        if (move === true) {
+            GameBoard.updateBoard(cell, currentPlayer);
+        }
+    };
+
+    //Check for win/loss/tie after every move (using winning index combos)
+    const checkWin = () => {
+        //Indexes taht indicates winning positions
+        const winningConditions = [
+            [0,1,2], [3,4,5], [6,7,8],
+            [0,3,6], [1,4,7], [2,5,8],
+            [0,4,8], [2,4,6]
+          ];
+        
+
+        //Get the current player plays' index
+        const currentPlayerCells = () => GameBoard.getBoard
+                                            .map((cells, index) => cells === currentPlayer ? index : -10)
+                                            .filter(index => index !== -10);
+        
+        //Compare to determine winner or not                                    
+    };
+})();
+
     //Check for win/loss/tie after every move (using winning index combos)
     //Switch players automatically after a valid move
     //Keep track of who's playing (currentPlayer)
