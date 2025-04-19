@@ -1,8 +1,21 @@
 // Gameboard module
+const GameBoard = ( () => {
     //Create gameboard with "blank" spaces
+    const board = Array(9).fill(null);
+
     //Function to get a copy of the gameboard safely (getter)
+    const getBoard = () => [...board];
+
     //Check if a move is valid (if cell is empty)
+    const checkMove = (cell) => board[cell] === null;
+
     //Update the cell with player's move
+    const updateBoard = (cell, currentPlayer) => board[cell] = currentPlayer;
+
+    //Reset gameboard
+    const resetGameBoard = () => board.fill(null);
+})();
+
     //Reset gameboard
     //Check if board is full
 
