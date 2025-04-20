@@ -54,7 +54,7 @@ const GameController = ( () => {
                 GameBoard.resetGameBoard();
             }
         } else {
-            console.log(`Invalid move! Cell ${cell} is already filled.`)
+            console.log(`Invalid move! Cell ${cell} is already filled.`);
         }
     };
 
