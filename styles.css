@@ -52,3 +52,61 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+.background {
+  background-image: url('img/notebook.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+
+@font-face {
+  font-family: 'Chalkiez';
+  src: url('fonts/chalkiez-regular-webfont.woff2') format('woff2'),
+       url('fonts/chalkiez-regular-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Books2022';
+  src: url('fonts/go_around_the_books_2022-webfont.woff2') format('woff2'),
+       url('fonts/go_around_the_books_2022-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Right-Chalk';
+  src: url('fonts/right_chalk-webfont.woff2') format('woff2'),
+       url('fonts/right_chalk-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.title {
+  font-family: 'Books2022', sans-serif;
+  font-size: 5rem;
+  color: black;
+  position: fixed;
+  top: 10%;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+.date {
+  font-family: 'Right-Chalk', sans-serif;
+  font-size: 1rem;
+  color: black;
+  position: fixed;
+  top: 2%;
+  right: 5%;
+  text-align: center;
+}

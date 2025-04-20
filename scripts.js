@@ -104,5 +104,3 @@ const GameController = ( () => {
 })();
 
 
-
-window.GameController = GameController;
