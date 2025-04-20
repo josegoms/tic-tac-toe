@@ -104,3 +104,18 @@ const GameController = ( () => {
 })();
 
 
+const date = document.querySelector(".date");
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    //Get today's date and format to DD/MM/YYY
+    const today = new Date();
+
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+
+    const formatted = `${day}/${month}/${year}`;
+
+    date.textContent = formatted;
+});
