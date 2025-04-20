@@ -26,7 +26,7 @@ const GameBoard = ( () => {
 // Game Controller / Players module
 const GameController = ( () => {
     //Create two players (could be just symbols "X" and "O" for now)
-    const players = ["O", "X"];
+    const players = ["X", "O"];
     let currentPlayer = players[0];
 
     //Handle move: player picks a cell → module checks → updates gameboard
@@ -35,23 +35,26 @@ const GameController = ( () => {
 
         if (move === true) {
             GameBoard.updateBoard(cell, currentPlayer);
-        }
+        
 
-        if(checkWin()) {
-            console.log(`You've won the game, Player ${currentPlayer}!`);
-            scores[currentPlayer]++;
-            GameBoard.resetGameBoard();
-        }
-        else if (scores[currentPlayer] >= 3) {
-            console.log(`You've won it all, Player ${currentPlayer}!`);
-            resetAll();
+            if(checkWin()) {
+                console.log(`You've won the game, Player ${currentPlayer}!`);
+                scores[currentPlayer]++;
+                GameBoard.resetGameBoard();
+            }
+            if (scores[currentPlayer] >= 3) {
+                console.log(`You've won it all, Player ${currentPlayer}!`);
+                resetAll();
+            } else if (!GameBoard.checkFullBoard()) {
+                switchPlayers();
+            }
+
+            if (GameBoard.checkFullBoard()) {
+                console.log(`It's a tie!`);
+                GameBoard.resetGameBoard();
+            }
         } else {
-            switchPlayers();
-        }
-
-        if (GameBoard.checkFullBoard()) {
-            console.log(`It's a tie!`);
-            GameBoard.resetGameBoard();
+            console.log(`Invalid move! Cell ${cell} is already filled.`)
         }
     };
 
@@ -86,13 +89,14 @@ const GameController = ( () => {
     };
 
     //Show scores
-    const getScores = () => [...scores];
+    const getScores = () => ({...scores});
 
     //Allow resetting game state (board + currentPlayer + scores)
     const resetAll = () => {
         GameBoard.resetGameBoard();
         currentPlayer = "X";
-        scores = { X: 0, O: 0 }
+        scores.X = 0;
+        scores.O = 0;
     };
 
     //Make methods available
