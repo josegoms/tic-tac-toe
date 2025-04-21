@@ -176,6 +176,7 @@ button:active {
 
 .player-score {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -263,4 +264,10 @@ form > div:last-child {
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.score1,
+.score2 {
+  font-family: 'Chalkiez', 'Right-Chalk', sans-serif;
+  font-size: 2rem;
 }

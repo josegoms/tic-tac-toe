@@ -43,6 +43,7 @@ const GameController = ( () => {
                 setTimeout(() => {
                     resetDisplay();
                     GameBoard.resetGameBoard();
+                    updateScore();
                 }, 1000);
             }
             if (scores[currentPlayer] >= 3) {
@@ -50,6 +51,7 @@ const GameController = ( () => {
                 setTimeout(() => {
                     resetDisplay();
                     resetAll();
+                    updateScore();
                 }, 1000);
             } else if (!GameBoard.checkFullBoard()) {
                 switchPlayers();
@@ -60,6 +62,7 @@ const GameController = ( () => {
                 setTimeout(() => {
                     resetDisplay();
                     GameBoard.resetGameBoard();
+                    updateScore();
                 }, 1000);
             }
         } else {
@@ -119,6 +122,18 @@ function resetDisplay () {
     gridItems.forEach((item) => {
         item.textContent = "";
     });
+}
+
+//Display scores updated
+function updateScore () {
+    //Get actual scores and display places
+    const getScores = GameController.getScores();
+    const score1 = document.querySelector(".score1");
+    const score2 = document.querySelector(".score2");
+
+    //Display them
+    score1.textContent = `Score: ${getScores["X"]}`;
+    score2.textContent = `Score: ${getScores["O"]}`;
 }
 
 //Get the Date and display it on screen(just like on a notebook where we need to keep track of our notes)
