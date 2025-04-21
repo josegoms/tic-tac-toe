@@ -112,7 +112,7 @@ const GameController = ( () => {
     };
 
     //Make methods available
-    return { makeMove, getCurrentPlayer, getScores }
+    return { makeMove, getCurrentPlayer, getScores, resetAll }
 })();
 
 //Handle display reset
@@ -196,4 +196,12 @@ changeName.addEventListener("click", () => {
     cancel.addEventListener("click", () => {
         dialog.close();
     });
+});
+
+//Restart the game
+const restart = document.querySelector(".restart");
+restart.addEventListener("click", () => {
+    GameController.resetAll();
+    updateScore();
+    resetDisplay();
 });
