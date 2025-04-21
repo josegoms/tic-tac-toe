@@ -48,11 +48,13 @@ const GameController = ( () => {
             }
             if (scores[currentPlayer] >= 3) {
                 console.log(`You've won it all, Player ${currentPlayer}!`);
+                displayCongratulations();
                 setTimeout(() => {
                     resetDisplay();
                     resetAll();
                     updateScore();
                 }, 1000);
+
             } else if (!GameBoard.checkFullBoard()) {
                 switchPlayers();
             }
@@ -134,6 +136,26 @@ function updateScore () {
     //Display them
     score1.textContent = `Score: ${getScores["X"]}`;
     score2.textContent = `Score: ${getScores["O"]}`;
+}
+
+//Add a congratulations message for the winner
+function displayCongratulations () {
+    //Call dialog
+    const dialog = document.querySelector("#congratulations");
+    dialog.showModal();
+
+    //Catch output element and winner
+    const message = document.querySelector("#congratulations p");
+    const winner = GameController.getCurrentPlayer();
+
+    //Display it
+    if (winner === "X") {
+        const currentPlayer = document.querySelector("#player1").textContent;
+        message.textContent = `You've won the game ${currentPlayer}`;
+    } else {
+        const currentPlayer = document.querySelector("#player2").textContent;
+        message.textContent = `You've won the game ${currentPlayer}`;
+    }
 }
 
 //Get the Date and display it on screen(just like on a notebook where we need to keep track of our notes)
