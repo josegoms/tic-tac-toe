@@ -151,3 +151,18 @@ gridContainer.addEventListener("click", (event) => {
         GameController.makeMove(lastCharacter);
     }
 });
+
+
+const dialog = document.querySelector("#nameDialog");
+const form = document.querySelector("#nameForm");
+const player1 = document.querySelector("#playerName1");
+const player2 = document.querySelector("#playerName2");
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const player1Name = player1.value.trim();
+    const player2Name = player2.value.trim();
+
+    console.log(`Player 1: ${player1Name}`);
+    console.log(`Player 2: ${player2Name}`);
+    dialog.close();
+});

@@ -10,7 +10,21 @@
 <body>
     <div class="background"></div>
     <p class="date"></p>
-    <p class="players">Player 1</p>
+    <div class="player-score">
+        <p class="players" id="player1" onclick="nameDialog.showModal()">Player 1</p>
+    </div>
+    <dialog id="nameDialog">
+        <form method="dialog" id="nameForm">
+            <div>
+                <input type="text" id="playerName" name="playerName1" value="Player 1" />
+                <input type="text" id="playerName" name="playerName2" value="Player 2" />
+            </div>
+            <div>
+                <button type="submit">Confirm</button>
+                <button type="button" onclick="nameDialog.close()">Cancel</button>
+            </div>
+        </form>
+      </dialog>      
     <div class="content">
         <h1 class="title">Tic Tac Toe</h1>
         <div class="grid-container">
@@ -25,9 +39,11 @@
             <div class="index-8 grid-item"></div>
         </div>
         <div>
-            <button>Start/Restart</button>
+            <button>Restart</button>
         </div>
     </div>
-    <p class="players">Player 2</p>
+    <div class="player-score">
+        <p class="players" id="player2" onclick="nameDialog.showModal()">Player 2</p>
+    </div>
 </body>
 </html>
