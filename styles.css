@@ -200,7 +200,8 @@ dialog {
   transform: translate(-50%, -50%);
 }
 
-dialog button {
+#nameDialog button {
+  outline: none;
   text-shadow:
   -3px -3px 0 white,
    3px -3px 0 white,
@@ -212,7 +213,7 @@ dialog button:hover {
   color: red;
 }
 
-dialog button:hover {
+#nameDialog button:hover {
   font-size: 2.5rem;
   text-shadow:
   -3px -3px 0 white,
@@ -270,4 +271,31 @@ form > div:last-child {
 .score2 {
   font-family: 'Chalkiez', 'Right-Chalk', sans-serif;
   font-size: 2rem;
+}
+
+
+#congratulations p {
+  font-family: 'Chalkiez', 'Right-Chalk', sans-serif;
+  font-size: 7rem;
+  color: white;
+  text-align: center;
+}
+
+#congratulations div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#congratulations button {
+  outline: none;
+  color: white;  
+}
+
+#congratulations button:hover {
+  text-shadow:
+  -3px -3px 0 black,
+   3px -3px 0 black,
+  -3px  3px 0 black,
+   3px  3px 0 black;
 }

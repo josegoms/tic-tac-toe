@@ -149,13 +149,20 @@ function displayCongratulations () {
     const winner = GameController.getCurrentPlayer();
 
     //Display it
-    if (winner === "X") {
+    if (winner == 'X') {
         const currentPlayer = document.querySelector("#player1").textContent;
-        message.textContent = `You've won the game ${currentPlayer}`;
-    } else {
+        message.textContent = `You've won the game ${currentPlayer}!`;
+    } else if (winner == 'O'){
         const currentPlayer = document.querySelector("#player2").textContent;
-        message.textContent = `You've won the game ${currentPlayer}`;
+        message.textContent = `You've won the game ${currentPlayer}!`;
     }
+
+    //Close button
+    const close = document.querySelector("#restart1");
+    close.addEventListener("click", () => {
+        dialog.close();
+        restartGame();
+    });
 }
 
 //Get the Date and display it on screen(just like on a notebook where we need to keep track of our notes)
@@ -221,9 +228,12 @@ changeName.addEventListener("click", () => {
 });
 
 //Restart the game
-const restart = document.querySelector(".restart");
-restart.addEventListener("click", () => {
+const restart = document.querySelector("#restart2");
+restart.addEventListener("click", restartGame);
+
+function restartGame () {
+    //Reset game
     GameController.resetAll();
     updateScore();
     resetDisplay();
-});
+}
