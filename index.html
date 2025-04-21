@@ -11,7 +11,7 @@
     <div class="background"></div>
     <p class="date"></p>
     <div class="player-score">
-        <p class="players" id="player1" onclick="nameDialog.showModal()">Player 1</p>
+        <p class="players" id="player1">Player 1</p>
     </div>
     <dialog id="nameDialog">
         <form method="dialog" id="nameForm">
@@ -21,7 +21,7 @@
             </div>
             <div>
                 <button type="submit">Confirm</button>
-                <button type="button" onclick="nameDialog.close()">Cancel</button>
+                <button type="button" id="cancel">Cancel</button>
             </div>
         </form>
       </dialog>      
@@ -43,7 +43,7 @@
         </div>
     </div>
     <div class="player-score">
-        <p class="players" id="player2" onclick="nameDialog.showModal()">Player 2</p>
+        <p class="players" id="player2">Player 2</p>
     </div>
 </body>
 </html>

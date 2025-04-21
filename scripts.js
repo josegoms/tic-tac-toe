@@ -152,17 +152,33 @@ gridContainer.addEventListener("click", (event) => {
     }
 });
 
+//Change player's names
+const changeName = document.querySelector(".players");
+changeName.addEventListener("click", () => {
 
-const dialog = document.querySelector("#nameDialog");
-const form = document.querySelector("#nameForm");
-const player1 = document.querySelector("#playerName1");
-const player2 = document.querySelector("#playerName2");
-form.addEventListener("submit", (event) => {
-    event.preventDefault();
-    const player1Name = player1.value.trim();
-    const player2Name = player2.value.trim();
+    //Call dialog
+    const dialog = document.querySelector("#nameDialog");
+    dialog.showModal();
 
-    console.log(`Player 1: ${player1Name}`);
-    console.log(`Player 2: ${player2Name}`);
-    dialog.close();
+    //Catch forms data
+    const formsData = document.querySelector("#nameForm");
+    formsData.addEventListener("submit", (event) => {
+
+        const formData = new FormData(event.target);
+        const playerName1 = formData.get("playerName1");
+        const playerName2 = formData.get("playerName2");
+
+        //Update the value
+        const playerOutput1 = document.querySelector("#player1");
+        const playerOutput2 = document.querySelector("#player2");
+
+        playerOutput1.textContent = playerName1;
+        playerOutput2.textContent = playerName2;
+    });
+
+    //Cancel button
+    const cancel = document.querySelector("#cancel");
+    cancel.addEventListener("click", () => {
+        dialog.close();
+    });
 });
