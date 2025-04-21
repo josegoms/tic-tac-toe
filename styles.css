@@ -92,8 +92,7 @@ h1, h2, h3, h4, h5, h6 {
 
 body {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
 
   height: 100vh;
   width: 100vw;
@@ -102,9 +101,10 @@ body {
 .content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 2rem;
+  margin-top: 2rem;
 }
 
 .title {
@@ -127,6 +127,7 @@ body {
 .grid-container {
   width: 25rem;
   height: 25rem;
+  cursor: pointer;
 
   display: grid;
   grid-template-columns: repeat(3, 8rem);
@@ -139,6 +140,37 @@ body {
   font-family: 'Right-Chalk', 'Book2022', sans-serif;
   font-size: 7rem;
   color: red;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Chalkiez', 'Right-Chalk', sans-serif;
+  font-size: 2.5rem;
+  margin-top: 2rem;
+}
+
+button:hover {
+  text-decoration: underline;
+}
+
+button:active {
+  font-size: 2rem;
+  color: red;
+  text-decoration: underline;
+}
+
+.players {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: 'Chalkiez', 'Right-Chalk', sans-serif;
+  font-size: 3rem;
 
   display: flex;
   justify-content: center;
