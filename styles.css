@@ -121,12 +121,18 @@ h1, h2, h3, h4, h5, h6 {
   height: 25rem;
 
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 8rem);
+  grid-template-rows: repeat(3, 8rem);
 }
 
 .grid-item {
   background-color: transparent;
-  border: 0.2em solid black;
-
+  border: 0.2rem solid black;
+  font-family: 'Right-Chalk', 'Book2022', sans-serif;
+  font-size: 7rem;
   color: red;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

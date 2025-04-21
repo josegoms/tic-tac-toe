@@ -40,18 +40,27 @@ const GameController = ( () => {
             if(checkWin()) {
                 console.log(`You've won the game, Player ${currentPlayer}!`);
                 scores[currentPlayer]++;
-                GameBoard.resetGameBoard();
+                setTimeout(() => {
+                    resetDisplay();
+                    GameBoard.resetGameBoard();
+                }, 1000);
             }
             if (scores[currentPlayer] >= 3) {
                 console.log(`You've won it all, Player ${currentPlayer}!`);
-                resetAll();
+                setTimeout(() => {
+                    resetDisplay();
+                    resetAll();
+                }, 1000);
             } else if (!GameBoard.checkFullBoard()) {
                 switchPlayers();
             }
 
             if (GameBoard.checkFullBoard()) {
                 console.log(`It's a tie!`);
-                GameBoard.resetGameBoard();
+                setTimeout(() => {
+                    resetDisplay();
+                    GameBoard.resetGameBoard();
+                }, 1000);
             }
         } else {
             console.log(`Invalid move! Cell ${cell} is already filled.`);
@@ -103,7 +112,16 @@ const GameController = ( () => {
     return { makeMove, getCurrentPlayer, getScores }
 })();
 
+//Handle display reset
+function resetDisplay () {
+    const gridItems = document.querySelectorAll(".grid-item");
 
+    gridItems.forEach((item) => {
+        item.textContent = "";
+    });
+}
+
+//Get the Date and display it on screen(just like on a notebook where we need to keep track of our notes)
 const date = document.querySelector(".date");
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -114,8 +132,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const day = String(today.getDate()).padStart(2, '0');
     const month = String(today.getMonth() + 1).padStart(2, '0');
     const year = today.getFullYear();
-
     const formatted = `${day}/${month}/${year}`;
 
+    //Display Date on screen
     date.textContent = formatted;
+});
+
+//Display players' marks
+const gridContainer = document.querySelector(".grid-container");
+gridContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("grid-item") && event.target.textContent === "") {
+        //Display the current player mark
+        event.target.textContent = GameController.getCurrentPlayer();
+
+        //Pass down index to module
+        const getClass = event.target.classList[0];
+        const lastCharacter = getClass.slice(-1);
+        GameController.makeMove(lastCharacter);
+    }
 });
